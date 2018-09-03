@@ -1,0 +1,8 @@
+---
+- name: install percona repository
+  yum:
+    name: http://www.percona.com/downloads/percona-release/redhat/0.1-6/percona-release-0.1-6.noarch.rpm
+
+- name: install percona-toolkit
+  yum:
+    name: percona-toolkit

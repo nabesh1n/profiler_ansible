@@ -1,0 +1,24 @@
+---
+- name: add nginx log_format conf
+  template:
+    src: log_format.conf
+    dest: /etc/nginx/conf.d/log_format.conf
+
+- name: download alp
+  get_url:
+    url: https://github.com/tkuchiki/alp/releases/download/v0.3.1/alp_linux_amd64.zip
+    dest: /tmp/alp_linux_amd64.zip
+
+- name: unzip alp
+  command: unzip /tmp/alp_linux_amd64.zip
+
+- name: mv alp
+  become: yes
+  command: mv /tmp/alp_linux_amd64 /usr/local/bin/alp
+
+- name: chown root:root
+  become: yes
+  file:
+    path: /usr/local/bin/alp
+    group: root
+    owner: root
