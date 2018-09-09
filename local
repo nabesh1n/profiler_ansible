@@ -6,6 +6,7 @@ mysql_config_file=/etc/mysql/mysql.cnf
 nginx_config_file=/etc/nginx/nginx.conf
 isucon_user=isucon
 isucon_group=isucon
+nginx_port=80
 webapp_port=5000
 webapp_root=/home/isucon/isubata/webapp/go
 webapp_public_root=/home/isucon/isubata/webapp/public
