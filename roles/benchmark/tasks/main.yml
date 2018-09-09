@@ -1,7 +1,7 @@
 ---
 - name: create benchmark directory
   file:
-    path: {{ ansible_env.PWD }}/../benchmark
+    path: "{{ ansible_env.PWD }}/../benchmark"
     state: directory
     owner: root
     group: root
@@ -9,7 +9,7 @@
 
 - name: add benchmark scripts
   template: 
-    src: {{ items }}
-    dest: {{ ansible_env.PWD }}/../benchmark
-    with_items:
-      - alp.sh
+    src: "{{ item }}"
+    dest: "{{ ansible_env.PWD }}/../benchmark"
+  with_items:
+    - alp.sh
