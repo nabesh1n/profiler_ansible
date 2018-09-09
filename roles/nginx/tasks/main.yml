@@ -14,7 +14,7 @@
   template:
     src: nginx.conf
     dest: "{{ isucon_config_dir }}nginx.conf"
-    mode: '644'
+    mode: 644
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
     force: yes
@@ -26,9 +26,9 @@
     src: "{{ isucon_config_dir }}nginx.conf"
     dest: "{{ nginx_config_file }}"
     state: link
-    owner: 'root'
-    group: 'root'
-    mode: '644'
+    owner: root
+    group: root
+    mode: 644
     force: yes
 
 - name: restart nginx
