@@ -1,3 +1,0 @@
----
-- name: install percona-toolkit
-  action: "{{ ansible_pkg_mgr }} name=percona-toolkit state=present"
