@@ -10,11 +10,7 @@
     dest: /tmp/alp_linux_amd64.zip
 
 - name: unzip alp
-  command: unzip /tmp/alp_linux_amd64.zip
-
-- name: mv alp
-  become: yes
-  command: mv /tmp/alp_linux_amd64 /usr/local/bin/alp
+  command: unzip /tmp/alp_linux_amd64.zip -d /usr/local/bin/
 
 - name: chown root:root
   become: yes
