@@ -1,0 +1,7 @@
+---
+- name: download slackcat
+  become: yes
+  get_url:
+    url: https://github.com/bcicen/slackcat/releases/download/v1.4/slackcat-1.4-linux-amd64
+    dest: /usr/local/bin/slackcat
+    mode: a+x
