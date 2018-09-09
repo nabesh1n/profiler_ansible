@@ -4,3 +4,4 @@ localhost ansible_connection=local
 [profiler:vars]
 isucon_config_dir=/home/isucon/isucon_configs/
 mysql_config_file=/etc/mysql/mysql.cnf
+mysql_config_dir=/etc/mysql/
