@@ -19,7 +19,7 @@
   template:
     src: my.cnf
     dest: "{{ isucon_config_dir }}mysql.cnf"
-    mode: 644
+    mode: 0644
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
     force: yes
@@ -33,7 +33,7 @@
     state: link
     owner: root
     group: root
-    mode: 644
+    mode: 0644
     force: yes
 
 - name: restart mysql
