@@ -4,13 +4,6 @@
     path: "{{ mysql_config_file }}"
   register: mysql_stat_result
 
-- name: create symlink
-  become: yes
-  file:
-    src: "{{ mysql_config_file }}"
-    dest: "{{ isucon_config_dir }}/mysql.cnf"
-    state: hard
-
 - name: backup my.cnf
   become: yes
   copy:
@@ -32,3 +25,13 @@
   become: yes
   service: name=mysql state=restarted enabled=yes
   when: mysql_stat_result.stat.exists == True
+
+- name: create symlink
+  become: yes
+  file:
+    src: "{{ mysql_config_file }}"
+    dest: "{{ isucon_config_dir }}/mysql.cnf"
+    state: hard
+    owner: "{{ isucon_user }}"
+    group: "{{ isucon_group }}"
+    mode: 0644
