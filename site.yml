@@ -2,6 +2,8 @@
   become: yes
   roles:
     - common
+    - sysctl
+    - nginx
     - alp
     - pt-query-digest
     - slackcat

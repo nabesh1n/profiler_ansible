@@ -1,0 +1,15 @@
+---
+- name: backup nginx.conf
+  copy:
+    src: /etc/nginx/nginx.conf
+    dest: /etc/nginx/nginx.conf.backup
+    mode: 0644
+    backup: yes
+
+- name: replace nginx.conf
+  template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: restart nginx
+  service: name=nginx state=restarted
