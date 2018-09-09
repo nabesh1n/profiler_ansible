@@ -6,6 +6,5 @@
     - mysql
     - alp
     - nginx
-    - pt-query-digest
     - slackcat
     - benchmark
