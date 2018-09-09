@@ -24,7 +24,7 @@
   become: yes
   template:
     src: my.cnf
-    dest: "{{ isucon_config_dir }}mysql.cnf"
+    dest: "{{ webapp_root }}/{{ isucon_config_dir }}/mysql.cnf"
     mode: 0644
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
@@ -34,7 +34,7 @@
 - name: create symlink
   become: yes
   file:
-    src: "{{ isucon_config_dir }}mysql.cnf"
+    src: "{{ webapp_root }}/{{ isucon_config_dir }}/mysql.cnf"
     dest: "{{ mysql_config_file }}"
     state: hard
     owner: root

@@ -19,7 +19,7 @@
   become: yes
   template:
     src: nginx.conf
-    dest: "{{ isucon_config_dir }}nginx.conf"
+    dest: "{{ webapp_root }}/{{ isucon_config_dir }}/nginx.conf"
     mode: 0644
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
@@ -29,7 +29,7 @@
 - name: create symlink
   become: yes
   file:
-    src: "{{ isucon_config_dir }}nginx.conf"
+    src: "{{ webapp_root }}/{{ isucon_config_dir }}/nginx.conf"
     dest: "{{ nginx_config_file }}"
     state: hard
     owner: root

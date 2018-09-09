@@ -6,7 +6,7 @@
 - name: make directory for isucon configs
   become: yes
   file:
-    path: "{{ isucon_config_dir }}"
+    path: "{{ webapp_root }}/{{ isucon_config_dir }}/"
     state: directory
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
