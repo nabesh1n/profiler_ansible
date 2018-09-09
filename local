@@ -2,8 +2,10 @@
 localhost ansible_connection=local
 
 [profiler:vars]
-isucon_config_dir=/home/isucon/isucon_configs/
+isucon_config_dir=/home/isucon/isubata/webapp/go/backend_configs/
 mysql_config_file=/etc/mysql/mysql.cnf
 nginx_config_file=/etc/nginx/nginx.conf
 isucon_user=isucon
 isucon_group=isucon
+webapp_port=5000
+webapp_root=/home/isucon/isubata/webapp/public
