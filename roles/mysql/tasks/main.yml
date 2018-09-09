@@ -4,41 +4,39 @@
     path: "{{ mysql_config_file }}"
   register: mysql_stat_result
 
-- name: backup my.cnf
-  become: yes
-  copy:
-    src: "{{ mysql_config_file }}"
-    dest: "{{ mysql_config_dir }}"
-    mode: 0666
-    backup: yes
-  when: mysql_stat_result.stat.exists == True
+- name: check backup file exists
+  stat:
+    path: "{{ mysql_config_file }}.backup"
+  register: mysql_backup_stat_result
 
-- name: remove symlink
+- name: rename old my.cnf for backup
   become: yes
-  file:
-    path: "{{ isucon_config_dir }}mysql.cnf"
-    state: absent
+  command: "mv {{ mysql_config_file }} {{ mysql_config_file }}.backup"
+  when: mysql_stat_result.stat.exists and not mysql_backup_stat_result.stat.exists
 
-- name: replace my.cnf
+- name: locate my.cnf
   become: yes
   template:
     src: my.cnf
+    dest: "{{ isucon_config_dir }}mysql.cnf"
+    mode: 0644
+    owner: "{{ isucon_user }}"
+    group: "{{ isucon_group }}"
+    force: yes
+  when: mysql_stat_result.stat.exists
+
+- name: create symlink
+  become: yes
+  file:
+    src: "{{ isucon_config_dir }}mysql.cnf"
     dest: "{{ mysql_config_file }}"
-    mode: 0666
-  when: mysql_stat_result.stat.exists == True
+    state: link
+    owner: root
+    group: root
+    mode: 0644
+    force: yes
 
 - name: restart mysql
   become: yes
   service: name=mysql state=restarted enabled=yes
   when: mysql_stat_result.stat.exists == True
-
-- name: create symlink
-  become: yes
-  file:
-    src: "{{ mysql_config_file }}"
-    dest: "{{ isucon_config_dir }}mysql.cnf"
-    state: hard
-    owner: "{{ isucon_user }}"
-    group: "{{ isucon_group }}"
-    mode: 0666
-    force: yes
