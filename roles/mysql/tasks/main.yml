@@ -19,7 +19,7 @@
   template:
     src: my.cnf
     dest: "{{ isucon_config_dir }}mysql.cnf"
-    mode: 0644
+    mode: '644'
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
     force: yes
@@ -31,12 +31,12 @@
     src: "{{ isucon_config_dir }}mysql.cnf"
     dest: "{{ mysql_config_file }}"
     state: link
-    owner: root
-    group: root
-    mode: 0644
+    owner: 'root'
+    group: 'root'
+    mode: '644'
     force: yes
 
 - name: restart mysql
   become: yes
   service: name=mysql state=restarted enabled=yes
-  when: mysql_stat_result.stat.exists == True
+  when: mysql_stat_result.stat.exists
