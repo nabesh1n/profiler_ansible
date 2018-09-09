@@ -13,12 +13,18 @@
     backup: yes
   when: mysql_stat_result.stat.exists == True
 
+- name: remove symlink
+  become: yes
+  file:
+    path: "{{ isucon_config_dir }}mysql.cnf"
+    state: absent
+
 - name: replace my.cnf
   become: yes
   template:
     src: my.cnf
     dest: "{{ mysql_config_file }}"
-    state: file
+    mode: 0644
   when: mysql_stat_result.stat.exists == True
 
 - name: restart mysql
@@ -35,3 +41,4 @@
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
     mode: 0644
+    force: yes
