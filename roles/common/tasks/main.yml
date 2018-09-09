@@ -10,4 +10,4 @@
     state: directory
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
-    mode: 755
+    mode: 0755
