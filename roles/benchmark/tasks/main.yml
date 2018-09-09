@@ -5,7 +5,7 @@
     state: directory
     owner: root
     group: root
-    mode: 075
+    mode: 0755
 
 - name: add benchmark scripts
   template: 
