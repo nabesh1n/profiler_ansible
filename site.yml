@@ -7,3 +7,4 @@
     - nginx
     - pt-query-digest
     - slackcat
+    - benchmark
