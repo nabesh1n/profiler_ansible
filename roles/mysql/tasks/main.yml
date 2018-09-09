@@ -9,6 +9,12 @@
     path: "{{ mysql_config_file }}.backup"
   register: mysql_backup_stat_result
 
+- name: remove symlink
+  become: yes
+  file:
+    path: "{{ mysql_config_file }}"
+    state: absent
+
 - name: rename old my.cnf for backup
   become: yes
   command: "mv {{ mysql_config_file }} {{ mysql_config_file }}.backup"
@@ -30,7 +36,7 @@
   file:
     src: "{{ isucon_config_dir }}mysql.cnf"
     dest: "{{ mysql_config_file }}"
-    state: link
+    state: hard
     owner: root
     group: root
     mode: 0644
