@@ -30,7 +30,7 @@
   become: yes
   file:
     src: "{{ mysql_config_file }}"
-    dest: "{{ isucon_config_dir }}/mysql.cnf"
+    dest: "{{ isucon_config_dir }}"
     state: hard
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
