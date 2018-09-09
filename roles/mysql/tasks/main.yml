@@ -4,6 +4,13 @@
     path: /etc/mysql/my.cnf
   register: mysql_stat_result
 
+- name: create symlink
+  file:
+    src: /etc/mysql/my.cnf
+    dest: "{{ isucon_config_dir }}/my.cnf"
+    state: hard
+    owner=foo group=foo mode=0644
+
 - name: backup my.cnf
   copy:
     src: /etc/mysql/my.cnf

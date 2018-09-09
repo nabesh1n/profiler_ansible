@@ -1,2 +1,5 @@
 [profiler]
 localhost ansible_connection=local
+
+[profiler:vars]
+isucon_config_dir=/home/isucon/config/

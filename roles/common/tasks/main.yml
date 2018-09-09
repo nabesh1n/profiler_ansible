@@ -1,3 +1,8 @@
 ---
 - name: install unzip
   action: "{{ ansible_pkg_mgr }} name=unzip state=present"
+
+- name: make directory for isucon configs
+  file: "{{ isucon_config_dir }}"
+  state: directory
+  owner: isucon
