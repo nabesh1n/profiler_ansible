@@ -3,6 +3,7 @@
   roles:
     - common
     - sysctl
+    - mysql
     - alp
     - nginx
     - pt-query-digest

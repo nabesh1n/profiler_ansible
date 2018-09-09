@@ -1,15 +1,35 @@
 ---
 - name: backup nginx.conf
+  become: yes
   copy:
-    src: /etc/nginx/nginx.conf
-    dest: /etc/nginx/nginx.conf.backup
-    mode: 0644
+    src: "{{ nginx_config_file }}"
+    dest: "{{ nginx_config_dir }}"
+    mode: 0666
     backup: yes
 
+- name: remove symlink
+  become: yes
+  file:
+    path: "{{ isucon_config_dir }}nginx.conf"
+    state: absent
+
 - name: replace nginx.conf
+  become: yes
   template:
     src: nginx.conf
-    dest: /etc/nginx/nginx.conf
+    dest: "{{ nginx_config_file }}"
 
 - name: restart nginx
+  become: yes
   service: name=nginx state=restarted
+
+- name: create symlink
+  become: yes
+  file:
+    src: "{{ nginx_config_file }}"
+    dest: "{{ isucon_config_dir }}nginx.conf"
+    state: hard
+    owner: "{{ isucon_user }}"
+    group: "{{ isucon_group }}"
+    mode: 0666
+    force: yes
