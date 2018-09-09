@@ -3,7 +3,7 @@
   roles:
     - common
     - sysctl
-    - nginx
     - alp
+    - nginx
     - pt-query-digest
     - slackcat
