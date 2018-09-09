@@ -1,5 +1,6 @@
 - hosts: profiler
   become: yes
   roles:
+    - common
     - alp
     - pt-query-digest
