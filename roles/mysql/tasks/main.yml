@@ -1,19 +1,19 @@
 ---
 - name: check mysql exists
   stat:
-    path: /etc/mysql/my.cnf
+    path: "{{ mysql_config_file }}"
   register: mysql_stat_result
 
 - name: create symlink
   file:
-    src: /etc/mysql/my.cnf
-    dest: "{{ isucon_config_dir }}/my.cnf"
+    src: "{{ mysql_config_file }}"
+    dest: "{{ isucon_config_dir }}/mysql.cnf"
     state: hard
 
 - name: backup my.cnf
   copy:
-    src: /etc/mysql/my.cnf
-    dest: /etc/mysql/my.cnf.backup
+    src: "{{ mysql_config_file }}"
+    dest: "{{ mysql_config_file }}"
     mode: 0644
     backup: yes
   when: mysql_stat_result.stat.exists == True
@@ -21,7 +21,7 @@
 - name: replace my.cnf
   template:
     src: my.cnf
-    dest: /etc/mysql/my.cnf
+    dest: "{{ mysql_config_file }}"
   when: mysql_stat_result.stat.exists == True
 
 - name: restart mysql
