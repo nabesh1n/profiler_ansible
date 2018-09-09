@@ -4,7 +4,7 @@
   copy:
     src: "{{ nginx_config_file }}"
     dest: "{{ nginx_config_dir }}"
-    mode: 0644
+    mode: 0666
     backup: yes
 
 - name: remove symlink
@@ -31,5 +31,5 @@
     state: hard
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
-    mode: 0644
+    mode: 0666
     force: yes

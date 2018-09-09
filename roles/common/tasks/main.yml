@@ -8,4 +8,4 @@
     state: directory
     owner: "{{ isucon_user }}"
     group: "{{ isucon_group }}"
-    mode: 0644
+    mode: 0666
