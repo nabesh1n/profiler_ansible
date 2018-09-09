@@ -6,4 +6,6 @@
   file:
     path: "{{ isucon_config_dir }}"
     state: directory
-    owner: isucon
+    owner: "{{ isucon_user }}"
+    group: "{{ isucon_group }}"
+    mode: 0644
