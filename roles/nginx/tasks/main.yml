@@ -4,12 +4,6 @@
     path: "{{ nginx_config_file }}.backup"
   register: nginx_backup_stat_result
 
-- name: remove symlink
-  become: yes
-  file:
-    path: "{{ nginx_config_file }}"
-    state: absent
-
 - name: rename old nginx.conf for backup
   become: yes
   command: "mv {{ nginx_config_file }} {{ nginx_config_file }}.backup"
